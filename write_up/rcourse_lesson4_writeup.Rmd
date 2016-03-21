@@ -10,18 +10,18 @@ load("rcourse_lesson4_environment.RData")
 
 # Introduction
 
-I analyzed alien species data from the two "Star Trek" series, "Star Trek: The Original Series" and "Star Trek: The Next Generation". Specifically, I looked at whether series (The Original Series, The Next Generation) and species alignment to the Enterprise (foe, friend) could predict whether the species was classified as likely to become extinct in the near future or not. Note, in the classification for this analysis only species with a classification of "least concerned" in a more nuanced classification system were labeled as "not likely", the rest were labeled as "likely".
+I analyzed alien species data from two "Star Trek" series, "Star Trek: The Original Series" and "Star Trek: The Next Generation". Specifically, I looked at whether series ("The Original Series", "The Next Generation") and species alignment to the Enterprise (foe, friend) could predict whether the species was classified as likely to become extinct in the near future or not. Note, in the classification for this analysis only species with a classification of "least concerned" in a more nuanced classification system were labeled as "not likely", the rest were labeled as "likely".
 
 
 # Results
 
-I tested for an effect of an alien species' likelihood of becoming extinct was different by the two series and whether the species was a friend or a foe. Initial visual examination of the data suggests that there is an interaction, where likelihood of becoming extinct for friends or foes is flipped for each series.
+I tested for if an alien species' likelihood of becoming extinct was predicted by the two series and whether the species was a friend or a foe. Initial visual examination of the data suggests that there is an interaction, where likelihood of becoming extinct for friends or foes is flipped for each series.
 
 ```{r, echo=FALSE, fig.align='center'}
 extinct.plot
 ```
 
-To test this effect I ran a logistic regression with not likely (0) or likely (1) as the dependent variable and series and alignment as independent variables. There was a significant effect of series and a significant interaction of series and alignment.
+To test this effect I ran a logistic regression with "not likely to become extinct" (0) or "likely to become extinct" (1) as the dependent variable and series and alignment as independent variables. There was a significant effect of series and a significant interaction of series and alignment.
 
 ```{r}
 extinct_seriesxalignment.glm_sum
