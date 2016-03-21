@@ -2,7 +2,7 @@
 title: 'R Course: Lesson 4'
 author: "Page Piccinini"
 date: "March 17, 2016"
-output: html_document
+output: pdf_document
 ---
 ```{r, echo=FALSE}
 load("rcourse_lesson4_environment.RData")
@@ -10,12 +10,12 @@ load("rcourse_lesson4_environment.RData")
 
 # Introduction
 
-I analyzed alien species data from two "Star Trek" series, "Star Trek: The Original Series" and "Star Trek: The Next Generation". Specifically, I looked at whether series ("The Original Series", "The Next Generation") and species alignment to the Enterprise (foe, friend) could predict whether the species was classified as likely to become extinct in the near future or not. Note, in the classification for this analysis only species with a classification of "least concerned" in a more nuanced classification system were labeled as "not likely", the rest were labeled as "likely".
+I analyzed alien species data from two "Star Trek" series, "Star Trek: The Original Series" and "Star Trek: The Next Generation". Specifically, I looked at whether series ("The Original Series", "The Next Generation") and species alignment to the Enterprise (foe, friend) could predict whether the species was classified as likely to become extinct in the near future or not. Note, in the classification for this analysis only species with a classification of "least concerned" in a more nuanced classification system, were labeled as "not likely", the rest were labeled as "likely".
 
 
 # Results
 
-I tested for if an alien species' likelihood of becoming extinct was predicted by the two series and whether the species was a friend or a foe. Initial visual examination of the data suggests that there is an interaction, where likelihood of becoming extinct for friends or foes is flipped for each series.
+I tested for if an alien species' likelihood of becoming extinct could be predicted by the series in which the species appeared and whether the species was a friend or a foe. Initial visual examination of the data suggests that there is an interaction, where likelihood of becoming extinct for friends or foes is flipped for each series.
 
 ```{r, echo=FALSE, fig.align='center'}
 extinct.plot
@@ -27,11 +27,22 @@ To test this effect I ran a logistic regression with "not likely to become extin
 extinct_seriesxalignment.glm_sum
 ```
 
-To better understand the interaction in my model
+To better understand the interaction in my model, I releveled my variables to see if effects changed. First I releveled the variable series to "tng". Now there is a significant effect of alignment, with friends being more likely to become extinct than foes, but specifically for "The Next Generation". There was no effect for "The Original Series" in the previous model.
+
+```{r}
+extinct_seriesxalignment_tng.glm_sum
+```
+
+I also releveled the variable alignment to "friend" to see if my effect of series persists or goes away. As one can see I still have an effect of series, but now in the opposite direction. So while foes were significantly more likely to *not* become extinct in "The Next Generation" than "The Original Series", the reverse is true for friends.
+
+```{r}
+extinct_seriesxalignment_friend.glm_sum
+```
+
 
 # Conclusion
 
-
+The likelihood of a "Star Trek" species to be headed towards extinction was affected both by the series where the species was portrayed and whether the species was a friend or a foe to the Enterprise. There was a significant interaction, with alignment not mattering in "The Original Series" but having an effect in "The Next Generation". This may have to do with the social issues and politics at the time each series was filmed, "The Original Series" 1966-1969 versus "The Next Generation" 1987-1994.
 
 
 
